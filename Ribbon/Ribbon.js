@@ -1,281 +1,191 @@
-/// <reference path="../_reference.d.ts" />
-/// <reference path="../Rendering/Rendering.ts" />
-/// <reference path="../Tools/ITool.ts" />
-/// <reference path="../Tools/ToolSelectRectangle.ts" />
-/// <reference path="../Tools/ToolPan.ts" />
-/// <reference path="../Tools/ToolTransfrom.ts" />
-/// <reference path="../Tools/ToolDelete.ts" />
-/// <reference path="../Tools/ToolBCEdit.ts" />
-/// <reference path="../Tools/ToolSnap.ts" />
-/// <reference path="../Tools/ToolZoomWindow.ts" />
-/// <reference path="../Tools/ToolBallControl.ts" />
-/// <reference path="../Tools/ToolMovePoint.ts" />
-/// <reference path="../Tools/ToolRotateAtPoint.ts" />
-/// <reference path="../Tools/ToolMeasure/ToolMeasure.ts" />
-/// <reference path="../Settings/Settings.ts" />
-/// <reference path="../Settings/SettingsController.ts" />
-/// <reference path="../Project/ProjectController.ts" />
-/// <reference path="../BCTool/BCTool.ts" />
-/// <reference path="../BCTool/BCToolController.ts" />
-/// <reference path="../FEA/FEAAnimation.ts" />
-/// <reference path="../Groups/TabGroups.ts" />
-/// <reference path="../License/License.ts" />
-/// <reference path="../Deleter/Deleter.ts" />
-/// <reference path="../Meshing/MeshingControl.ts" />
-/// <reference path="../Force/RefPointEntity.ts" />
-var RibbonClass = /** @class */ (function () {
-    function RibbonClass(layout) {
-        var self = this;
-        this._isModelLoaded = false;
-        this._isExportMeshEnabled = false;
-        this._activateId = "";
-        this._container = $('#ribbon');
-        $('#ribbon').OfficeRibbon();
-        this._container.removeClass("hide");
-        this.EnableHighlightToolHandler(layout);
-        ///////// PROJECT //////////////
-        $("#btn-new-project").click(function () {
-            Project.New();
-        });
-        $("#btn-open-project").click(function () {
-            Project.OpenDialog();
-        });
-        $("#btn-save-project").click(function () {
-            Project.SaveDialog(null);
-        });
-        ///////// </ END PROJECT > //////////////
-        $("#btn-import").click(function () {
-            self.GotoImport();
-        });
-        $("#btn-goto-editor").click(function () {
-            self.GotoEditor();
-        });
-        $("#btn-goto-editor2").click(function () {
-            self.GotoEditor();
-        });
-        $("#btn-tool-trackball").click(function () {
-            App.Layout.SetTool(new ToolBallControl());
-        });
-        $("#btn-zoom-fit").click(function () {
-            App.Layout.ZoomToFit(true /*keep camera look*/);
-        });
-        $("#btn-zoom-window").click(function () {
-            App.Layout.SetTool(new ToolZoomWindow());
-        });
-        $("#btn-tool-pan").click(function () {
-            App.Layout.SetTool(new ToolPan());
-        });
-        $("#btn-edit-move").click(function () {
-            App.Layout.SetTool(new ToolTransform(TransformMode.Move));
-        });
-        $("#btn-edit-move-point").click(function () {
-            App.Layout.SetTool(new ToolMovePoint());
-        });
-        $("#btn-edit-rotate").click(function () {
-            App.Layout.SetTool(new ToolTransform(TransformMode.Rotate));
-        });
-        $("#btn-edit-rotate-at-point").click(function () {
-            App.Layout.SetTool(new ToolRotateAtPoint());
-        });
-        $("#btn-edit-scale").click(function () {
-            App.Layout.SetTool(new ToolTransform(TransformMode.Scale));
-        });
-        $("#btn-edit-delete").click(function () {
-            Deleter.DeleteSelection();
-        });
-        $("#btn-measure-tool").click(function () {
-            App.Layout.SetTool(new ToolMeasure());
-        });
-        $("#btn-select-nodes").click(function () {
-            App.Layout.Selector.SelectItems(SelectionType.Node);
-        });
-        $("#btn-select-edge").click(function () {
-            App.Layout.Selector.SelectItems(SelectionType.Edge);
-        });
-        $("#btn-select-face").click(function () {
-            App.Layout.Selector.SelectItems(SelectionType.Face);
-        });
-        $("#btn-select-entity").click(function () {
-            App.Layout.Selector.SelectItems(SelectionType.Entity);
-        });
-        $("#btn-select-clear").click(function () {
-            App.Layout.SetDefaultTool();
-            App.Layout.Selector.Clear();
-        });
-        $("#btn-simulation").click(function () {
-            self.GoToSimulation();
-        });
-        $("#btn-simulation-result").click(function () {
-            self.GoToSimulationResult();
-        });
-        $("#btn-settings").click(function () {
-            SettingsController.Instance.ShowDialog();
-        });
-        //////////////// Moment Tab /////////////////////////
-        $("#btn-refpoint-create").click(function () {
-            $("#modal-refpoint-name").modal();
-            //var ent = new RefPointEntity();
-            //App.Layout.Scene.add(ent);
-            //// Add to selection
-            //App.Layout.Selector.Clear();
-            //App.Layout.Selector.AddSelectedItems([new SelectionItemEntity(ent)]);
-            //// Activate transform tool
-            //var transformTool = new ToolTransform(TransformMode.Move);
-            //transformTool.TransformObject = ent;
-            //App.Layout.SetTool(transformTool);
-        });
-        $("#btn-moment-tool").click(function () {
-            App.Layout.SetTool(new ToolMoment());
-        });
-        //////////////// Meshing Tab /////////////////////////
-        $("#btn-meshing-control").click(function () {
-            self.GotoImport();
-            //  MeshingControl.ShowDialog();
-        });
-        /////////////////// BC Tool TAB /////////////////////////////////
-        $("#btn-bc-tool-new").click(function () {
-            BCToolController.Instance.DoneEditing();
-            $("#bc-tool-dialog").modal();
-        });
-        $("#btn-bc-tool-edit-full-move").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.FullMove));
-        });
-        $("#btn-bc-tool-edit-full-rotate").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.FullRotate));
-        });
-        $("#btn-bc-tool-edit-manual-move").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.ManualMove));
-        });
-        $("#btn-bc-tool-edit-manual-rotate").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.ManualRotate));
-        });
-        $("#btn-bc-tool-edit-grid-manual-move").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.ManualGridMove));
-        });
-        $("#btn-bc-tool-edit-grid-manual-rotate").click(function () {
-            App.Layout.SetTool(new ToolBCEdit(ToolBCEditMode.ManualGridRotate));
-        });
-        $("#btn-bc-tool-snap").click(function () {
-            App.Layout.SetTool(new ToolSnap());
-        });
-        $("#btn-bc-tool-trisurf").click(function () {
-            App.Layout.SetTool(new ToolTriPntSurf());
-        });
-        $("#btn-bc-tool-about").click(function () {
-            $("#bc-tool-about-dialog").modal();
-        });
-        /////////////////// </ BC Tool TAB > /////////////////////////////////
-        /////////////////// FEA TAB /////////////////////////////////
-        $("#btn-animation-disp-start").click(function () {
-            FEAAnimation.StartAnimation();
-        });
-        $("#btn-animation-disp-stop").click(function () {
-            FEAAnimation.StopAnimation();
-        });
-        ///////// Rendering TAB //////////////
-        $("#btn-rendering-shading").click(function () {
-            Rendering.SetRenderingMode(RenderingModeType.Shading);
-        });
-        $("#btn-rendering-wireframe").click(function () {
-            Rendering.SetRenderingMode(RenderingModeType.Wireframe);
-        });
-        $("#btn-rendering-meshedges").click(function () {
-            Rendering.SetRenderingMode(RenderingModeType.ShadingEdge);
-        });
-        ///////// </ End Rendering TAB > //////////////
-        self.UpdateUserName();
-        self.GotoImport();
-    }
-    RibbonClass.prototype.UpdateUserName = function () {
-        $.getJSON("/Login/GetUserInfo", function (data) {
-            if (data === undefined || data.Username === undefined) {
-                $("#ribbon-username").html("");
-                return;
-            }
-            $("#ribbon-username").html(data.Username);
-        });
-    };
-    RibbonClass.prototype.Activate = function (contentId) {
-        var oldId = this._activateId;
-        this._activateId = contentId;
-        if (oldId == contentId) {
-            return;
-        }
-        if (oldId != null && oldId != "" && oldId != undefined) {
-            $(oldId).hide("slide", function () {
-                $(contentId).show("slide");
-            });
-        }
-        else {
-            $(contentId).show("slide");
-        }
-    };
-    RibbonClass.prototype.GoToSimulationResult = function () {
-        this.Activate("#simulationResultPanel");
-    };
-    RibbonClass.prototype.GoToSimulation = function () {
-        this.Activate("#simulationPanel");
-    };
-    RibbonClass.prototype.GotoImport = function () {
-        this.Activate("#importPanel");
-    };
-    RibbonClass.prototype.GotoEditor = function () {
-        this.Activate("#layoutPanel");
-        // Update SetUps and Groups
-        TabGroups.Refresh();
-        TabSetUpsController.Instance.Refresh();
-        // Update BC tools
-        BCToolTabController.Instance.Update();
-        RefPointTabController.Instance.Update();
-    };
-    RibbonClass.prototype.EnableModel = function () {
-        this._isModelLoaded = true;
-    };
-    RibbonClass.prototype.GetHeight = function () {
-        return this._container.height();
-    };
-    RibbonClass.prototype.SetTitle = function (title) {
-        $("#ribbon-window-title").html(title);
-    };
-    RibbonClass.prototype.EnableBCEditButtons = function (enable) {
-        if (enable) {
-            $("#btn-bc-tool-edit-manual-move").enableRbButton();
-            $("#btn-bc-tool-edit-manual-rotate").enableRbButton();
-            $("#btn-bc-tool-edit-grid-manual-move").enableRbButton();
-            $("#btn-bc-tool-edit-grid-manual-rotate").enableRbButton();
-            $("#btn-bc-tool-snap").enableRbButton();
-            $("#btn-bc-tool-trisurf").enableRbButton();
-            $("#btn-bc-tool-edit-full-move").enableRbButton();
-            $("#btn-bc-tool-edit-full-rotate").enableRbButton();
-        }
-        else {
-            $("#btn-bc-tool-edit-manual-move").disableRbButton();
-            $("#btn-bc-tool-edit-manual-rotate").disableRbButton();
-            $("#btn-bc-tool-edit-grid-manual-move").disableRbButton();
-            $("#btn-bc-tool-edit-grid-manual-rotate").disableRbButton();
-            $("#btn-bc-tool-snap").disableRbButton();
-            $("#btn-bc-tool-trisurf").disableRbButton();
-            $("#btn-bc-tool-edit-full-move").disableRbButton();
-            $("#btn-bc-tool-edit-full-rotate").disableRbButton();
-        }
-    };
-    RibbonClass.prototype.EnableHighlightToolHandler = function (layout) {
-        $("#ribbon .ribbon-tool").click(function () {
-            // unhiglight all
-            $("#ribbon .ribbon-tool").removeClass("ribbon-button-active");
-            $(this).addClass("ribbon-button-active");
-        });
-        layout.ToolChanged.on(function (tool) {
-            // higlight
-            if (tool == null) {
-                return;
-            }
-            if (tool instanceof ToolPan) {
-                // unhiglight all
-                $("#ribbon .ribbon-tool").removeClass("ribbon-button-active");
-                $("#btn-tool-pan").addClass("ribbon-button-active");
-            }
-        });
-    };
-    return RibbonClass;
-}());
+(function( $ ){
+	$.fn.OfficeRibbon = function(id) {
+		if (!id) {
+			if (this.attr('id')) {
+				id = this.attr('id');
+			}
+		}
+		
+		var that = function() { 
+			return thatRet;
+		};
+		
+		
+		
+		var thatRet = that;
+		
+		that.selectedTabIndex = -1;
+		
+		var tabNames = [];
+		
+		that.goToBackstage = function() {
+			ribObj.addClass('backstage');
+		}
+			
+		that.returnFromBackstage = function() {
+			ribObj.removeClass('backstage');
+		}	
+		var ribObj = null;
+		
+		that.init = function(id) {
+			if (!id) {
+				id = 'ribbon';
+			}
+		
+			ribObj = $('#'+id);
+			ribObj.find('.ribbon-window-title').after('<div id="ribbon-tab-header-strip"></div>');
+			var header = ribObj.find('#ribbon-tab-header-strip');
+			
+			ribObj.find('.ribbon-tab').each(function(index) {
+				var id = $(this).attr('id');
+				if (id == undefined || id == null)
+				{
+					$(this).attr('id', 'rbtab-'+index);
+					id = 'rbtab-'+index;
+				}
+				tabNames[index] = id;
+			
+				var title = $(this).find('.ribbon-title');
+				var isBackstage = $(this).hasClass('file');
+				header.append('<div id="ribbon-tab-header-'+index+'" class="ribbon-tab-header"></div>');
+				var thisTabHeader = header.find('#ribbon-tab-header-'+index);
+				thisTabHeader.append(title);
+				if (isBackstage) {
+					thisTabHeader.addClass('file');
+					
+					thisTabHeader.click(function() {
+						that.switchToTabByIndex(index);
+						that.goToBackstage();
+					});
+				} else {
+					if (that.selectedTabIndex==-1) {
+						that.selectedTabIndex = index;
+						thisTabHeader.addClass('sel');
+					}
+					
+					thisTabHeader.click(function() {
+						that.returnFromBackstage();
+						that.switchToTabByIndex(index);
+					});
+				}
+				
+				
+				
+				$(this).hide();
+			});
+			
+			ribObj.find('.ribbon-button').each(function(index) {
+				var title = $(this).find('.button-title');
+				title.detach();
+				$(this).append(title);
+				
+				var el = $(this);
+				
+				this.enable = function() {
+					el.removeClass('disabled');
+				}
+				this.disable = function() {
+					el.addClass('disabled');
+				}
+				this.isEnabled = function() {
+					return !el.hasClass('disabled');
+				}
+								
+				if ($(this).find('.ribbon-hot').length==0) {
+					$(this).find('.ribbon-normal').addClass('ribbon-hot');
+				}			
+				if ($(this).find('.ribbon-disabled').length==0) {
+					$(this).find('.ribbon-normal').addClass('ribbon-disabled');
+					$(this).find('.ribbon-normal').addClass('ribbon-implicit-disabled');
+				}
+				
+				$(this).tooltip({
+					bodyHandler: function () {
+						if (!$(this).isEnabled()) { 
+							$('#tooltip').css('visibility', 'hidden');
+							return '';
+						}
+						
+						var tor = '';
+
+						if (jQuery(this).children('.button-help').size() > 0)
+							tor = (jQuery(this).children('.button-help').html());
+						else
+							tor = '';
+
+						if (tor == '') {
+							$('#tooltip').css('visibility', 'hidden');
+							return '';
+						}
+
+						$('#tooltip').css('visibility', 'visible');
+
+						return tor;
+					},
+					left: 0,
+					extraClass: 'ribbon-tooltip'
+				});
+			});
+			
+			ribObj.find('.ribbon-section').each(function(index) {
+				$(this).after('<div class="ribbon-section-sep"></div>');
+			});
+
+			ribObj.find('div').attr('unselectable', 'on');
+			ribObj.find('span').attr('unselectable', 'on');
+			ribObj.attr('unselectable', 'on');
+
+			that.switchToTabByIndex(that.selectedTabIndex);
+		}
+		
+		that.switchToTabByIndex = function(index) {
+			var headerStrip = $('#ribbon #ribbon-tab-header-strip');
+			headerStrip.find('.ribbon-tab-header').removeClass('sel');
+			headerStrip.find('#ribbon-tab-header-'+index).addClass('sel');
+
+			$('#ribbon .ribbon-tab').hide();
+			$('#ribbon #'+tabNames[index]).show();
+		}
+		
+		$.fn.enableRbButton = function() {
+			if (this.hasClass('ribbon-button')) {
+				if (this[0] && this[0].enable) {
+					this[0].enable();
+				}	
+			}
+			else {
+				this.find('.ribbon-button').each(function() {
+					$(this).enable();
+				});
+			}				
+		}
+		
+				
+		$.fn.disableRbButton = function() {
+			if (this.hasClass('ribbon-button')) {
+				if (this[0] && this[0].disable) {
+					this[0].disable();
+				}	
+			}
+			else {
+				this.find('.ribbon-button').each(function() {
+					$(this).disable();
+				});
+			}				
+		}
+	
+		$.fn.isEnabled = function() {
+			if (this[0] && this[0].isEnabled) {
+				return this[0].isEnabled();
+			} else {
+				return true;
+			}
+		}
+	
+	
+		that.init(id);
+	
+		$.fn.ribbon = that;
+	};
+
+})( jQuery );

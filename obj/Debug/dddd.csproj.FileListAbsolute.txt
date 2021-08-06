@@ -1,0 +1,5 @@
+C:\Users\User64\Downloads\af-physics-m\bin\Debug\ClassLibrary.dll
+C:\Users\User64\Downloads\af-physics-m\bin\Debug\ClassLibrary.pdb
+C:\Users\User64\Downloads\af-physics-m\obj\Debug\dddd.csprojAssemblyReference.cache
+C:\Users\User64\Downloads\af-physics-m\obj\Debug\ClassLibrary.dll
+C:\Users\User64\Downloads\af-physics-m\obj\Debug\ClassLibrary.pdb
