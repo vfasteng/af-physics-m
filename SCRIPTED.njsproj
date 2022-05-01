@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{47fd12ed-f213-4cf2-93f1-03c31f000bfe}</ProjectGuid>
+        <ProjectHome>.</ProjectHome>
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>App.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="package.json" />
+        <Content Include="README.md" />
+        <Content Include="angular-sanitize.js" />
+        <Content Include="angular-ui-bootstrap-0.14.1.js" />
+        <Content Include="angular.js" />
+        <Content Include="App.js" />
+        <Content Include="AppStart.js" />
+        <Content Include="bapp.js" />
+        <Content Include="bootstrap-colorpalette.js" />
+        <Content Include="bootstrap-select.js" />
+        <Content Include="bootstrap.js" />
+        <Content Include="ErrorHandler.js" />
+        <Content Include="hashset.js" />
+        <Content Include="hashtable.js" />
+        <Content Include="HtmlFactory.js" />
+        <Content Include="JavaScript1.js" />
+        <Content Include="jquery-1.9.1.intellisense.js" />
+        <Content Include="jquery-1.9.1.js" />
+        <Content Include="jquery-ui-1.9.1.js" />
+        <Content Include="jquery.unobtrusive-ajax.js" />
+        <Content Include="jquery.validate-vsdoc.js" />
+        <Content Include="jquery.validate.js" />
+        <Content Include="jquery.validate.unobtrusive.js" />
+        <Content Include="LoginPage.js" />
+        <Content Include="underscore-min.js" />
+        <Content Include="underscore.js" />
+        <Content Include="_references.js" />
+        <Content Include="Angular\CompileDirective.js" />
+        <Content Include="Angular\HtmlInnerDirective.js" />
+        <Content Include="BCTool\package.json" />
+        <Content Include="BCTool\BCTool.js" />
+        <Content Include="BCTool\BCToolController.js" />
+        <Content Include="BCTool\BCToolTabController.js" />
+        <Content Include="Controllers\Vector3InputController.js" />
+        <Content Include="Convert\Convert.js" />
+        <Content Include="Deleter\Deleter.js" />
+        <Content Include="Editor\bundle.js" />
+        <Content Include="Editor\Editor.js" />
+        <Content Include="Editor\PickPointOptions.js" />
+        <Content Include="Editor\PickPointRes.js" />
+        <Content Include="Editor\PlaneEditorType.js" />
+        <Content Include="Editor\PlaneSelectToolbarController.js" />
+        <Content Include="Entities\EntityInfo.js" />
+        <Content Include="Entities\EntityMatrix.js" />
+        <Content Include="Entities\EntitySelector.js" />
+        <Content Include="Entities\ObjectData.js" />
+        <Content Include="Events\CEvent.js" />
+        <Content Include="Events\Keyboard.js" />
+        <Content Include="Extensions\GeomExtension.js" />
+        <Content Include="Extensions\THREEVectorExtension.js" />
+        <Content Include="ExternalCommands\ExternalCommands.js" />
+        <Content Include="FEA\FEAAnimation.js" />
+        <Content Include="FEA\FRDDataset.js" />
+        <Content Include="FEA\FRDNode.js" />
+        <Content Include="FEA\Legend.js" />
+        <Content Include="Force\FixedSymbEntity.js" />
+        <Content Include="Force\ForceEntity.js" />
+        <Content Include="Force\ForceManager.js" />
+        <Content Include="Force\MomentEntity.js" />
+        <Content Include="Force\RefPointEntity.js" />
+        <Content Include="Geometry\Line.js" />
+        <Content Include="Geometry\Triangle.js" />
+        <Content Include="Groups\BoundCondition.js" />
+        <Content Include="Groups\EntityGroup.js" />
+        <Content Include="Groups\GroupCondController.js" />
+        <Content Include="Groups\SelectGroupDialogController.js" />
+        <Content Include="Groups\TabGroups.js" />
+        <Content Include="Import\Import.js" />
+        <Content Include="Layout\Layout.js" />
+        <Content Include="Layout\Navigation.js" />
+        <Content Include="License\License.js" />
+        <Content Include="Loaders\SkinMeshLoader.js" />
+        <Content Include="Material\Material.js" />
+        <Content Include="Material\MaterialDatabaseController.js" />
+        <Content Include="Material\MaterialEditController.js" />
+        <Content Include="Material\MaterialTabController.js" />
+        <Content Include="Meshing\Meshing.js" />
+        <Content Include="Meshing\MeshingControl.js" />
+        <Content Include="Meshing\MeshingDialogController.js" />
+        <Content Include="Meshing\MeshingHelp.js" />
+        <Content Include="Meshing\MeshingImproveOptions.js" />
+        <Content Include="Moment\RefPointController.js" />
+        <Content Include="Moment\RefPoints.js" />
+        <Content Include="Moment\RefPointTabController.js" />
+        <Content Include="Operations\IOperation.js" />
+        <Content Include="Operations\OperationCamera.js" />
+        <Content Include="Operations\OperationDelete.js" />
+        <Content Include="Operations\OperationEditEntity.js" />
+        <Content Include="Operations\OperationManager.js" />
+        <Content Include="Progress\Progress.js" />
+        <Content Include="Progress\ProgressToken.js" />
+        <Content Include="Project\Project.js" />
+        <Content Include="Project\ProjectController.js" />
+        <Content Include="Rendering\Rendering.js" />
+        <Content Include="Rendering\RenderingController.js" />
+        <Content Include="Ribbon\jquery.tooltip.min.js" />
+        <Content Include="Ribbon\ribbon.js" />
+        <Content Include="Selection\SelectionItem.js" />
+        <Content Include="Selection\SelectionItemBufVert.js" />
+        <Content Include="Selection\SelectionItemEdge.js" />
+        <Content Include="Selection\SelectionItemEntity.js" />
+        <Content Include="Selection\SelectionItemFace.js" />
+        <Content Include="Selection\Selector.js" />
+        <Content Include="Settings\Settings.js" />
+        <Content Include="Settings\SettingsController.js" />
+        <Content Include="SetUps\TabSetUpsController.js" />
+        <Content Include="Simulation\Simulation.js" />
+        <Content Include="SkinMesh\SkinMesh.js" />
+        <Content Include="Tasks\Taskmanager.js" />
+        <Content Include="Three\CombinedCamera.js" />
+        <Content Include="Three\Detector.js" />
+        <Content Include="Three\droid_sans_regular.typeface.js" />
+        <Content Include="Three\ObjectLoader.js" />
+        <Content Include="Three\optimer_regular.typeface.js" />
+        <Content Include="Three\OrbitControls.js" />
+        <Content Include="Three\stats.js" />
+        <Content Include="Three\STLLoader.js" />
+        <Content Include="Three\three.js" />
+        <Content Include="Three\TrackballControls.js" />
+        <Content Include="Three\TransformControls.js" />
+        <Content Include="Three\VRMLLoader.js" />
+        <Content Include="Tools\ITool.js" />
+        <Content Include="Tools\ToolBallControl.js" />
+        <Content Include="Tools\ToolBCEdit.js" />
+        <Content Include="Tools\ToolDelete.js" />
+        <Content Include="Tools\ToolMoment.js" />
+        <Content Include="Tools\ToolMovePoint.js" />
+        <Content Include="Tools\ToolPan.js" />
+        <Content Include="Tools\ToolRotateAtPoint.js" />
+        <Content Include="Tools\ToolSelectRectangle.js" />
+        <Content Include="Tools\ToolSnap.js" />
+        <Content Include="Tools\ToolTransfrom.js" />
+        <Content Include="Tools\ToolTriPntSurf.js" />
+        <Content Include="Tools\ToolZoomWindow.js" />
+        <Content Include="UI\ConfirmBox.js" />
+        <Content Include="UI\ConfirmBoxController.js" />
+        <Content Include="UI\HelpBox.js" />
+        <Content Include="UI\HelpBoxController.js" />
+        <Content Include="UI\InputBox.js" />
+        <Content Include="UI\InputDigitBox.js" />
+        <Content Include="UI\InputNameBoxController.js" />
+        <Content Include="UI\InputNumberBoxController.js" />
+        <Content Include="UI\MessageBox.js" />
+        <Content Include="UI\MessageBoxController.js" />
+        <Content Include="UI\UICheckItem.js" />
+        <Content Include="UI\UIInteractive.js" />
+        <Content Include="Uploader\SimpleAjaxUploader.js" />
+        <Content Include="Utilities\ColorUtility.js" />
+        <Content Include="Utilities\EdgesUtility.js" />
+        <Content Include="Utilities\UIUtility.js" />
+        <Content Include="BCTool\now\package.json" />
+        <Content Include="BCTool\now\bct_browser.js" />
+        <Content Include="obj\Debug\dddd.csproj.FileListAbsolute.txt" />
+        <Content Include="obj\Debug\FromExistingCode1.njsproj.FileListAbsolute.txt" />
+        <Content Include="obj\x86\Debug\scripts22.csproj.FileListAbsolute.txt" />
+        <Content Include="Tools\ToolMeasure\ToolMeasure.js" />
+        <Content Include="Tools\ToolMeasure\ToolMeasureController.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Angular" />
+        <Folder Include="BCTool" />
+        <Folder Include="BCTool\now" />
+        <Folder Include="bin" />
+        <Folder Include="bin\Debug" />
+        <Folder Include="bin\Release" />
+        <Folder Include="Controllers" />
+        <Folder Include="Convert" />
+        <Folder Include="Deleter" />
+        <Folder Include="Editor" />
+        <Folder Include="Entities" />
+        <Folder Include="Events" />
+        <Folder Include="Extensions" />
+        <Folder Include="ExternalCommands" />
+        <Folder Include="FEA" />
+        <Folder Include="Force" />
+        <Folder Include="FromExistingCode1" />
+        <Folder Include="Geometry" />
+        <Folder Include="Groups" />
+        <Folder Include="Import" />
+        <Folder Include="Layout" />
+        <Folder Include="License" />
+        <Folder Include="Loaders" />
+        <Folder Include="Material" />
+        <Folder Include="Meshing" />
+        <Folder Include="Moment" />
+        <Folder Include="obj" />
+        <Folder Include="obj\Debug" />
+        <Folder Include="obj\Debug\TempPE" />
+        <Folder Include="obj\x86" />
+        <Folder Include="obj\x86\Debug" />
+        <Folder Include="obj\x86\Debug\TempPE" />
+        <Folder Include="Operations" />
+        <Folder Include="Progress" />
+        <Folder Include="Project" />
+        <Folder Include="Rendering" />
+        <Folder Include="Ribbon" />
+        <Folder Include="Selection" />
+        <Folder Include="Settings" />
+        <Folder Include="SetUps" />
+        <Folder Include="Simulation" />
+        <Folder Include="SkinMesh" />
+        <Folder Include="Tasks" />
+        <Folder Include="Three" />
+        <Folder Include="Tools" />
+        <Folder Include="Tools\ToolMeasure" />
+        <Folder Include="typings" />
+        <Folder Include="typings\angular" />
+        <Folder Include="typings\bootstrap" />
+        <Folder Include="typings\hashtable" />
+        <Folder Include="typings\jquery" />
+        <Folder Include="typings\three" />
+        <Folder Include="typings\underscore" />
+        <Folder Include="typings\uploader" />
+        <Folder Include="typings\webrtc" />
+        <Folder Include="UI" />
+        <Folder Include="Uploader" />
+        <Folder Include="Utilities" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

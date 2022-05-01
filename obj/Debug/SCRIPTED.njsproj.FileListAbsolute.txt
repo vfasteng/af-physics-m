@@ -1,0 +1,2 @@
+C:\Users\User64\Downloads\af-physics-m\obj\Debug\SCRIPTED.njsproj.CoreCompileInputs.cache
+C:\Users\User64\Downloads\af-physics-m\bin\Microsoft.NodejsTools.WebRole.dll
